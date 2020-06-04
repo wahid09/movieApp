@@ -29,7 +29,7 @@ class MoviesController extends Controller
         $genres = collect($genresArray)->mapWithKeys(function($genre){
             return [$genre['id']=>$genre['name']];
         });
-        dump($nowPlayingMovies);
+        //dump($nowPlayingMovies);
 
         return view('index', [
             'populerMovies'    => $populerMovies,
@@ -67,7 +67,14 @@ class MoviesController extends Controller
      */
     public function show($id)
     {
-        return view('show');
+        $movieDetails = Http::withToken(config('services.tmdb.token'))
+                       ->get('https://api.themoviedb.org/3/movie/'.$id.'?append_to_response=credits,videos,images')
+                       ->json();
+        //dump($movieDetails);
+
+        return view('show', [
+            'movie' => $movieDetails,
+        ]);
     }
 
     /**
