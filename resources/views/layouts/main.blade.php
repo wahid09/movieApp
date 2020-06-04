@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width" initial-scale=1>
 	<title></title>
 	<link rel="stylesheet" href="/css/main.css">
+	<livewire:styles>
 </head>
 <body class="font-sans bg-gray-900 text-white">
 	<nav class="border-b border-gray-800">
@@ -42,5 +43,6 @@
 		</div>
 	</nav>
 	@yield('content')
+	<livewire:scripts>
 </body>
 </html>
